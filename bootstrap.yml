@@ -1,0 +1,10 @@
+---
+
+  - hosts: all
+    become: true
+    remote_user: root
+    pre_tasks:
+    roles: 
+     - update_packages
+     - python3
+      

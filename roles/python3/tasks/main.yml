@@ -1,0 +1,11 @@
+   - name: Ensure Python3 is Installed and updated # Install/Update Python3
+     apt:
+       name: python3
+       state: latest
+     when: ansible_distribution == "Ubuntu"
+
+   - name: Ensure Python3 is Installed and updated # Install/Update Python3
+     apt:
+       name: python3
+       state: latest
+     when: ansible_distribution == "Debian"
