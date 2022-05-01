@@ -1,0 +1,18 @@
+  - name: create sys admin user 
+    user:
+      name: sysmin
+      create_home: yes
+      groups: root
+      
+  - name: add ssh key for sysmin
+    authorized_key:
+      user: sysmin
+      key: "{{ lookup('file', '~/.ssh/id_ed25519_sk.pub') }}"
+
+  - name: add sudoers file for sysmin
+    copy:
+      src: sudoer_sysmin
+      dest: /etc/sudoers.d/sysmin
+      owner: root
+      group: root
+      mode: 0440
