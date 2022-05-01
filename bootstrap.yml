@@ -5,6 +5,9 @@
     remote_user: root
     pre_tasks:
     roles: 
-     - update_packages
-     - python3
-      
+ #     - update_packages
+      - package_python3
+      - ansible_user
+      - sysmin_user
+      - sshd_config
+      - firewall_base
