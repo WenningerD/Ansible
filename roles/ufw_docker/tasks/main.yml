@@ -1,0 +1,14 @@
+- name: ufw firewall config file # update the sshd config file
+  template: src=firewall/ufw_docker.j2
+      dest=/etc/ufw/after.rules
+      backup=yes
+      owner=0 group=0 mode=0644      
+  register: update 
+
+
+- name: Restart UFW Service
+  ansible.builtin.service:
+      name: ufw
+      state: restarted
+      enabled: yes
+  when: update.changed
