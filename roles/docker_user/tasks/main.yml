@@ -1,0 +1,8 @@
+  - name: create docker user
+    user:
+      name: docker
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,docker
+      state: present
+      
