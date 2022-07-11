@@ -7,7 +7,7 @@
   - name: add ssh key for sysmin
     authorized_key:
       user: sysmin
-      key: "{{ lookup('file', '~/.ssh/id_ed25519_sk.pub') }}"
+      key: "{{ lookup('file', '~/.ssh/Yubikey1_USB-C.pub') }}"
 
   - name: add sudoers file for sysmin
     copy:
