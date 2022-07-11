@@ -1,0 +1,12 @@
+---
+
+  - hosts: docker
+    become: true
+    remote_user: ansible
+    pre_tasks:
+    roles: 
+      - update_packages
+      - docker_user
+      - install_docker
+      - ufw_docker
+      
