@@ -1,0 +1,35 @@
+- name: Ensure curl is Installed and updated 
+  apt:
+    name: curl
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Ensure curl is Installed and updated 
+  apt:
+    name: curl
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Change the working directory to /home/docker and install get-docker.sh
+  ansible.builtin.shell: curl -fsSL https://get.docker.com -o get-docker.sh # <-- this is the command to run
+  args:
+    chdir: /home/docker
+
+
+- name: Change the working directory to /home/docker and run get-docker.sh
+  ansible.builtin.shell: sh ./get-docker.sh # <-- this is the command to run
+  args:
+    chdir: /home/docker
+
+
+- name: Ensure docker-compose is Installed and updated 
+  apt:
+    name: docker-compose
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Ensure docker-compose is Installed and updated 
+  apt:
+    name: docker-compose
+    state: latest
+  when: ansible_distribution == "Ubuntu"
