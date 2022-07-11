@@ -1,26 +1,100 @@
-- name: Allow port 22 (SSH)
+- name: Install iptables-persistent Ubuntu
+  apt:
+    name: iptables-persistent
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install iptables-persistent Debian
+  apt:
+    name: iptables-persistent
+    state: latest
+  when: ansible_distribution == "Debian"
+
+- name: Allow port 22 (SSH) IPv4
   ansible.builtin.iptables:
     chain: INPUT
     protocol: tcp
     destination_port: 22
     jump: ACCEPT
+    ip_version: ipv4
 
-- name: Allow related and established connections
+- name: Allow related and established connections IPv4
   ansible.builtin.iptables:
     chain: INPUT
     ctstate: ESTABLISHED,RELATED
     jump: ACCEPT
+    ip_version: ipv4
 
-- name: Allow related and established connections
+- name: Allow related and established connections IPv4
   ansible.builtin.iptables:
     chain: INPUT
     in_interface: lo
     jump: ACCEPT
+    ip_version: ipv4
 
-
-- name: Set the policy for the INPUT chain to DROP
+- name: Set the policy for the INPUT chain to DROP IPv4
   ansible.builtin.iptables:
     chain: INPUT
     policy: DROP
+    ip_version: ipv4
+
+- name: Allow port 80 (HTTP) IPv4
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 80
+    jump: ACCEPT
+    ip_version: ipv4
+
+- name: Allow port 443 (HTTPS) IPv4
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 443
+    jump: ACCEPT
+    ip_version: ipv4
 
 
+- name: Allow port 22 (SSH) IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    jump: ACCEPT
+    ip_version: ipv6
+
+- name: Allow related and established connections IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    ctstate: ESTABLISHED,RELATED
+    jump: ACCEPT
+    ip_version: ipv6
+
+- name: Allow related and established connections IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    in_interface: lo
+    jump: ACCEPT
+    ip_version: ipv6
+
+- name: Set the policy for the INPUT chain to DROP IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    policy: DROP
+    ip_version: ipv6
+
+- name: Allow port 80 (HTTP) IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 80
+    jump: ACCEPT
+    ip_version: ipv6
+
+- name: Allow port 443 (HTTPS) IPv6
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 443
+    jump: ACCEPT
+    ip_version: ipv6
