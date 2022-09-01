@@ -6,7 +6,7 @@
     pre_tasks:
     roles: 
       - update_packages
-      - docker_user
+      - docker_user    
       - install_docker
+      - docker_user_groups 
       - ufw_docker
-      
