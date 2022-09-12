@@ -6,6 +6,26 @@
   register: update 
 
 
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+
+- name: Allow SSH connections
+  community.general.ufw:
+    rule: allow
+    port: ssh
+
+# - name: Allow incoming loopback connections
+#   community.general.ufw:
+#     rule: allow
+#     interface_in: lo
+
+# - name: Allow outgoing loopback connections
+#   community.general.ufw:
+#     rule: allow
+#     interface_out: lo
+
 - name: Restart UFW Service
   ansible.builtin.service:
       name: ufw
