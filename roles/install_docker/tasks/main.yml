@@ -10,6 +10,7 @@
     state: latest
   when: ansible_distribution == "Debian"
 
+
 - name: Change the working directory to /home/docker and install get-docker.sh
   ansible.builtin.shell: curl -fsSL https://get.docker.com -o get-docker.sh # <-- this is the command to run
   args:
