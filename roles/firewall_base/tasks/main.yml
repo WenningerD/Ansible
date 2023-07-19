@@ -25,7 +25,7 @@
     jump: ACCEPT
     ip_version: ipv4
 
-- name: Allow related and established connections IPv4
+- name: Allow lo interface IPv4
   ansible.builtin.iptables:
     chain: INPUT
     in_interface: lo
@@ -70,7 +70,7 @@
     jump: ACCEPT
     ip_version: ipv6
 
-- name: Allow related and established connections IPv6
+- name: Allow lo interface IPv6
   ansible.builtin.iptables:
     chain: INPUT
     in_interface: lo
