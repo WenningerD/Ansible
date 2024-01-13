@@ -2,7 +2,7 @@
 
   - hosts: all
     become: true
-    remote_user: root
+    remote_user: ansible
     pre_tasks:
     roles: 
       - update_packages
@@ -10,4 +10,4 @@
       - ansible_user
       - sysmin_user
       - sshd_config
-#      - firewall_base
+      - firewall_base
